@@ -1,0 +1,14 @@
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\bin\Debug\net8.0\FileOrganizer.exe
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\bin\Debug\net8.0\FileOrganizer.deps.json
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\bin\Debug\net8.0\FileOrganizer.runtimeconfig.json
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\bin\Debug\net8.0\FileOrganizer.dll
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\bin\Debug\net8.0\FileOrganizer.pdb
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\obj\Debug\net8.0\FileOrganizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\obj\Debug\net8.0\FileOrganizer.AssemblyInfoInputs.cache
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\obj\Debug\net8.0\FileOrganizer.AssemblyInfo.cs
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\obj\Debug\net8.0\FileOrganizer.csproj.CoreCompileInputs.cache
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\obj\Debug\net8.0\FileOrganizer.dll
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\obj\Debug\net8.0\refint\FileOrganizer.dll
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\obj\Debug\net8.0\FileOrganizer.pdb
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\obj\Debug\net8.0\FileOrganizer.genruntimeconfig.cache
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\FileOrganizer\obj\Debug\net8.0\ref\FileOrganizer.dll
