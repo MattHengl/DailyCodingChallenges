@@ -1,0 +1,7 @@
+IP Address: 192.168.1.1
+Timestamp: 10/Oct/2023:13:55:36 +0000
+Method: GET
+URL: /home
+HTTP Version: HTTP/1.1
+Status Code: 200
+Response Size: 2326

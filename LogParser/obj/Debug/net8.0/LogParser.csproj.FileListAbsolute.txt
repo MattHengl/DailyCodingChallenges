@@ -1,0 +1,15 @@
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\bin\Debug\net8.0\LogParser.exe
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\bin\Debug\net8.0\LogParser.deps.json
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\bin\Debug\net8.0\LogParser.runtimeconfig.json
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\bin\Debug\net8.0\LogParser.dll
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\bin\Debug\net8.0\LogParser.pdb
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\LogParser.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\LogParser.AssemblyInfoInputs.cache
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\LogParser.AssemblyInfo.cs
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\LogParser.csproj.CoreCompileInputs.cache
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\LogParser.sourcelink.json
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\LogParser.dll
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\refint\LogParser.dll
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\LogParser.pdb
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\LogParser.genruntimeconfig.cache
+C:\Users\g0m3h\source\repos\DailyCodingChallenges\LogParser\obj\Debug\net8.0\ref\LogParser.dll
