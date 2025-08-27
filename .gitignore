@@ -23,3 +23,13 @@ packages/
 
 # Others
 *.log
+*.db
+*.shm
+*.wal
+*.db-shm
+*.db-wal
+*.vsidx
+*.wsuo
+*.v2
+*.v9.bin
+*.vs

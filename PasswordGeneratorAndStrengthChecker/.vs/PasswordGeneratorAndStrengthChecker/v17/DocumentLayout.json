@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\g0m3h\\source\\repos\\DailyCodingChallenges\\PasswordGeneratorAndStrengthChecker\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{865B2DE6-2F6A-453D-8B3F-BDB6400973E4}|PasswordGeneratorAndStrengthChecker.csproj|c:\\users\\g0m3h\\source\\repos\\dailycodingchallenges\\passwordgeneratorandstrengthchecker\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{865B2DE6-2F6A-453D-8B3F-BDB6400973E4}|PasswordGeneratorAndStrengthChecker.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{865B2DE6-2F6A-453D-8B3F-BDB6400973E4}|PasswordGeneratorAndStrengthChecker.csproj|c:\\users\\g0m3h\\source\\repos\\dailycodingchallenges\\passwordgeneratorandstrengthchecker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{865B2DE6-2F6A-453D-8B3F-BDB6400973E4}|PasswordGeneratorAndStrengthChecker.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\g0m3h\\source\\repos\\DailyCodingChallenges\\PasswordGeneratorAndStrengthChecker\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\g0m3h\\source\\repos\\DailyCodingChallenges\\PasswordGeneratorAndStrengthChecker\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAOAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF8SURBVDhPjVNLTgJBEG1lwpoFB3GNK9fieA48hD8iwT/ihwgSDAIHgAGXXsEV18CNzL/LquqZdsYM6kteXqcy3fWqpmpNRBgOhyABBEgpAFVKPIMUcYzUyOU\u002BXM/b2qtU3vkSfRjjZTCAMAw1A2LwzdFoBPP5HNqdzuL27n4juibWI\u002BUshBA1DIkhEx9iEorFotgslQqGYbxxAGFEqt1MxmPWJLbLZdZ\u002Bv89q5PMFPiTR6z2zdaxR0fXA0XTBcVywkb4fwHXjRteecIDNQ7UmExVYAdPcxYaqclN46na5WenMKjtlVnTYwcXlVYaDqImW9beD5N/TeGy32QHXm6hZ03ZgiSQHp2fnWQ4oBmJqWSqwAqZpZjt4aLXAD4J0VqyZsmoubfB8H2r1eoaD6NXZ9HcHO\u002BSA3f4AjifXl8rItOETM8ckB9WTWpYD9RdeZ1PWVWAHWXPQaDb59f/w8LiqHeh1pvGkCaP6qB8yXusoxmuNZ7XmII4O9vGuEF86osuDYRkpYQAAAABJRU5ErkJggg==",
+              "WhenOpened": "2025-08-25T22:19:12.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "savedPasswords.txt",
               "DocumentMoniker": "C:\\Users\\g0m3h\\source\\repos\\DailyCodingChallenges\\PasswordGeneratorAndStrengthChecker\\savedPasswords.txt",
               "RelativeDocumentMoniker": "savedPasswords.txt",
@@ -38,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "passwordBlacklist.txt",
               "DocumentMoniker": "C:\\Users\\g0m3h\\source\\repos\\DailyCodingChallenges\\PasswordGeneratorAndStrengthChecker\\passwordBlacklist.txt",
               "RelativeDocumentMoniker": "passwordBlacklist.txt",
@@ -50,13 +67,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\g0m3h\\source\\repos\\DailyCodingChallenges\\PasswordGeneratorAndStrengthChecker\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\g0m3h\\source\\repos\\DailyCodingChallenges\\PasswordGeneratorAndStrengthChecker\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAB6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-25T20:35:27.428Z",
               "EditorCaption": ""
