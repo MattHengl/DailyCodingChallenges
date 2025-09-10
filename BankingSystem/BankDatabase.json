@@ -1,0 +1,84 @@
+[
+  {
+    "AccountNumber": "A18986",
+    "FirstName": "Matt",
+    "LastName": "Hengl",
+    "Balance": 50,
+    "AccountType": "Saving",
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2025-09-10T10:43:23.9352711-07:00",
+        "TransactionNumber": "D60456",
+        "SendingAccountNumber": "A18986",
+        "RecievingAccountNumber": "A18986",
+        "AmountSent": 150
+      },
+      {
+        "TransactionDate": "2025-09-10T14:29:54.6611529-07:00",
+        "TransactionNumber": "T43285",
+        "SendingAccountNumber": "A78088",
+        "RecievingAccountNumber": "A18986",
+        "AmountSent": 100
+      }
+    ]
+  },
+  {
+    "AccountNumber": "A78088",
+    "FirstName": "Matt",
+    "LastName": "Hengl",
+    "Balance": 1743,
+    "AccountType": "Saving",
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2025-09-10T13:54:59.6084346-07:00",
+        "TransactionNumber": "D98497",
+        "SendingAccountNumber": "A78088",
+        "RecievingAccountNumber": "A78088",
+        "AmountSent": 150
+      },
+      {
+        "TransactionDate": "2025-09-10T13:57:04.8434707-07:00",
+        "TransactionNumber": "D33490",
+        "SendingAccountNumber": "A78088",
+        "RecievingAccountNumber": "A78088",
+        "AmountSent": 2000
+      },
+      {
+        "TransactionDate": "2025-09-10T14:01:35.4581579-07:00",
+        "TransactionNumber": "W54887",
+        "SendingAccountNumber": "A78088",
+        "RecievingAccountNumber": "A78088",
+        "AmountSent": 100
+      },
+      {
+        "TransactionDate": "2025-09-10T14:12:32.6712845-07:00",
+        "TransactionNumber": "W26681",
+        "SendingAccountNumber": "A78088",
+        "RecievingAccountNumber": "A78088",
+        "AmountSent": 100
+      },
+      {
+        "TransactionDate": "2025-09-10T14:27:05.8419878-07:00",
+        "TransactionNumber": "T74458",
+        "SendingAccountNumber": "A78088",
+        "RecievingAccountNumber": "A18986",
+        "AmountSent": 100
+      },
+      {
+        "TransactionDate": "2025-09-10T14:29:54.6611529-07:00",
+        "TransactionNumber": "T43285",
+        "SendingAccountNumber": "A78088",
+        "RecievingAccountNumber": "A18986",
+        "AmountSent": 100
+      }
+    ]
+  },
+  {
+    "AccountNumber": "A58795",
+    "FirstName": "Matt",
+    "LastName": "Hangl",
+    "Balance": 0,
+    "AccountType": "checking",
+    "TransactionHistory": []
+  }
+]
