@@ -26,6 +26,7 @@ class URLShortener
          * Handle Edge cases(duplicate URLS, invalid characters, etc)
          */
         UrlLibrary = LoadJson<Url>("../../../UrlLibrary.json");
+        CheckExpirationDate();
         Menu();
     }
     public static void Menu()
