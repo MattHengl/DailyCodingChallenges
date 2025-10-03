@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\URLShortenerService",
+    "\\URLShortenerService\\URLShortenerTest"
   ],
+  "SelectedNode": "\\URLShortenerService\\URLShortenerService.sln",
   "PreviewInSolutionExplorer": false
 }

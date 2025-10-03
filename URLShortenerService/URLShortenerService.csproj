@@ -1,15 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>URLShortenerService</RootNamespace>
+    <TargetFramework>net8.0</TargetFramework>
+    <StartupObject>URLShortenerService.URLShortener</StartupObject>
+	<!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>-->
+	  <!--
+    This template uses native xUnit.net command line options when using 'dotnet run' and
+    VSTest by default when using 'dotnet test'. For more information on how to enable support
+    for Microsoft Testing Platform, please visit:
+      https://xunit.net/docs/getting-started/v3/microsoft-testing-platform
+    -->
   </PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
+		<PackageReference Include="xunit" Version="2.9.3" />
+		<PackageReference Include="xunit.core" Version="2.9.3" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
   <ItemGroup>
-    <Reference Include="JSONLibrary">
-      <HintPath>..\..\UtilityLibrary\JSONLibrary\bin\Debug\net8.0\JSONLibrary.dll</HintPath>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ClassLibrary">
+      <HintPath>..\..\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
 

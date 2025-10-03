@@ -1,41 +1,50 @@
-﻿using System.Xml;
-using static JSONLibrary.JSONClass;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Xml;
+using static ClassLibrary.ClassLibrary;
 
-class URLShortener
+namespace URLShortenerService;
+
+public class URLShortener
 {
     public static List<Url> UrlLibrary = new List<Url>();
     static void Main(string[] args)
     {
         /*
-         * Generate short codes for long URLS
-         * - Create unique short codes
-         * - Ensure no collisions with existing codes
-         * - Options for custom aliases
-         * Store URL mapping(JSON)
-         * "Redirect" functionality - lookup original URL from short code
-         * track Analytics for each shortened URL
-         * - Number of times accessed
-         * - First/Last access timestamps
-         * - Access History Log
-         * Support URL management
-         * - List all shortened URLS
-         * - Delete/expire old URLS
-         * - Update Destination URLS
-         * - Set Expiration dates for temp links
-         * Validate URLS before shortening
-         * Handle Edge cases(duplicate URLS, invalid characters, etc)
-         */
+            * Generate short codes for long URLS
+            * - Create unique short codes
+            * - Ensure no collisions with existing codes
+            * - Options for custom aliases
+            * Store URL mapping(JSON)
+            * "Redirect" functionality - lookup original URL from short code
+            * track Analytics for each shortened URL
+            * - Number of times accessed
+            * - First/Last access timestamps
+            * - Access History Log
+            * Support URL management
+            * - List all shortened URLS
+            * - Delete/expire old URLS
+            * - Update Destination URLS
+            * - Set Expiration dates for temp links
+            * Validate URLS before shortening
+            * Handle Edge cases(duplicate URLS, invalid characters, etc)
+            */
         UrlLibrary = LoadJson<Url>("../../../UrlLibrary.json");
         CheckExpirationDate();
         Menu();
     }
+    public static int Add(int x, int y) => x + y;
     public static void Menu()
     {
         bool flag = true;
         do
         {
             Console.WriteLine("What would you like to do today?(List, New, Update, Remove, Open, Exit)");
-            switch (Console.ReadLine().ToLower().Trim())
+            var input = Console.ReadLine();
+            if (input == null)
+            {
+                continue;
+            }
+            switch (input.ToLower().Trim())
             {
                 case "list":
                     ListAllUrls();
@@ -64,7 +73,7 @@ class URLShortener
     public static Url AskingUrl()
     {
         Console.WriteLine("What shortUrl are you looking for?");
-        string findingShortUrl = Console.ReadLine();
+        string? findingShortUrl = Console.ReadLine();
         return UrlLookup(findingShortUrl);
     }
     public static bool UrlExists(string url, string urlType)
@@ -221,6 +230,7 @@ class URLShortener
     }
 }
 
+
 public class Url
 {
     public string? LongUrl {  get; set; }
@@ -247,7 +257,7 @@ public class Url
         ExpirationDate = experationDate;
         AccessAmount = accessAmount;
     }
-    public string ToString()
+    public override string ToString()
     {
         return $"\nLongUrl: {LongUrl}\nShortUrl: {ShortUrl}\nFirstAccess: {FirstAccess}\nLastAccess: {LastAccess}\nExpirationDate: {ExpirationDate}\nAccessAmount: {AccessAmount}\n";
     }
