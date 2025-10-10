@@ -19,8 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\URLShortenerService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="URLShortenerService">
       <HintPath>..\obj\Debug\net8.0\URLShortenerService.dll</HintPath>
+    </Reference>
+    <Reference Include="UtilityLibrary">
+      <HintPath>..\..\..\UtilityLibrary\UtilityLibrary\obj\Debug\net8.0\UtilityLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
 

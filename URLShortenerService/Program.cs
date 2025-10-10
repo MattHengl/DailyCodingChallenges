@@ -1,6 +1,6 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 using System.Xml;
-using static ClassLibrary.ClassLibrary;
+using static UtilityLibrary.UtilityClass;
 
 namespace URLShortenerService;
 
