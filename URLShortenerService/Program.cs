@@ -114,30 +114,18 @@ public class URLShortener
     }
     public static void NewUrl()
     {
-        bool flag = true;
-        DateTime parsedExpirationDate = DateTime.MinValue;
+        string expirationDate = null;
         Console.WriteLine("Please enter the full Url.");
         string longUrl = Console.ReadLine();
         string shortUrl = LongUrltoShortUrl();
         Console.WriteLine("Is there an expiration date that you want to add on this url?(Y,N)");
         if (Console.ReadLine().ToLower().Contains("y"))
         {
-            do
-            {
-                Console.WriteLine("Please enter in the expiration date that you would like.(yyyy/MM/dd)");
-                string expirationDate = Console.ReadLine();
-                if (DateTime.TryParseExact(expirationDate, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out parsedExpirationDate))
-                {
-                    Console.WriteLine($"Parsed date: {parsedExpirationDate}");
-                    flag = false;
-                }
-                else
-                {
-                    Console.WriteLine("That is not a valid DateTime format.");
-                }
-            } while (flag);
+            Console.WriteLine("Please enter in the expiration date that you would like.(yyyy/MM/dd)");
+            expirationDate = Console.ReadLine();
+            Console.WriteLine($"Expiration date: {expirationDate}");
         }
-        AddUrlToLibrary(longUrl, shortUrl, flag ? null : (DateTime?)parsedExpirationDate);
+        AddUrlToLibrary(longUrl, shortUrl, expirationDate);
     }
     public static void UpdateUrl(Url? url)
     {
@@ -157,15 +145,7 @@ public class URLShortener
                 case "expirationdate":
                     Console.WriteLine("What do you want the new ExpirationDate to be?");
                     string desiredExpirationDate = Console.ReadLine();
-                    DateTime newExpirationDate;
-                    if (DateTime.TryParseExact(desiredExpirationDate, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out newExpirationDate))
-                    {
-                        url.ExpirationDate = newExpirationDate;
-                    }
-                    else
-                    {
-                        Console.WriteLine("That is not a valid DateTime format.");
-                    }
+                    url.ExpirationDate = desiredExpirationDate;
                     break;
                 default:
                     break;
@@ -191,12 +171,12 @@ public class URLShortener
         } while (UrlLibrary.Any(u => u.ShortUrl == shortUrl));
         return shortUrl;
     }
-    public static void AddUrlToLibrary(string longUrl, string shortUrl, DateTime? expirationDate)
+    public static void AddUrlToLibrary(string longUrl, string shortUrl, string expirationDate)
     {
         //Check the library first to see if there is already a long/short form url already?
         if (!UrlExists(longUrl, "LongUrl") && !UrlExists(shortUrl, "ShortUrl"))
         {
-            Url newUrl = new Url(longUrl, shortUrl, DateTime.Now, null, expirationDate, 0);
+            Url newUrl = new Url(longUrl, shortUrl, $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}", null, expirationDate, 0);
             UrlLibrary.Add(newUrl);
         }
         else
@@ -208,7 +188,7 @@ public class URLShortener
     {
         foreach (var item in UrlLibrary)
         {
-            if (item.ExpirationDate == DateTime.Now)
+            if (item.ExpirationDate == $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}")
             {
                 RemoveUrl(item);
             }
@@ -225,7 +205,7 @@ public class URLShortener
             }
 
             url.AccessAmount++;
-            url.LastAccess = DateTime.Now;
+            url.LastAccess = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
         }
     }
 }
@@ -235,9 +215,9 @@ public class Url
 {
     public string? LongUrl {  get; set; }
     public string? ShortUrl { get; set; }
-    public DateTime? FirstAccess {  get; set; }
-    public DateTime? LastAccess { get; set; }
-    public DateTime? ExpirationDate { get; set; }
+    public string? FirstAccess {  get; set; }
+    public string? LastAccess { get; set; }
+    public string? ExpirationDate { get; set; }
     public int AccessAmount { get; set; }
     public Url()
     {
@@ -248,7 +228,7 @@ public class Url
         ExpirationDate = null;
         AccessAmount = 0;
     }
-    public Url(string longUrl, string shortUrl, DateTime? firstAccess, DateTime? lastAccess, DateTime? experationDate, int accessAmount)
+    public Url(string longUrl, string shortUrl, string? firstAccess, string? lastAccess, string? experationDate, int accessAmount)
     {
         LongUrl = longUrl;
         ShortUrl = shortUrl;

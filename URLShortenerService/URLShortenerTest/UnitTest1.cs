@@ -9,7 +9,7 @@ namespace URLShortenerTest
     {
         private readonly List<object[]> _data = new List<object[]>
         {
-            new object[] { "bing.com", "shortu/fJyt3g", new DateTime(2025, 10, 06, 15, 36, 23, 834, DateTimeKind.Local), null, null, 0 }
+            new object[] { "bing.com", "shortu/fJyt3g", "2025-10-06", null, null, 0 }
         };
         public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
 
@@ -19,7 +19,7 @@ namespace URLShortenerTest
     {
         private readonly List<object[]> _data = new List<object[]>
         {
-            new object[] { "chrome.com", "shortu/1122g", new DateTime(2025, 10, 06, 15, 36, 23, 834, DateTimeKind.Local), null, null, 0 }
+            new object[] { "chrome.com", "shortu/1122g", "2025-10-06", null, null, 0 }
         };
         public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
 
@@ -69,22 +69,25 @@ namespace URLShortenerTest
         }
 
         [Theory]
-        [ClassData(typeof(GoodDataGenerator))]
-        public void UrlLookupGood(string longUrl, string shortUrl, DateTime firstAccess, DateTime? lastAccess, DateTime? expirationDate, int accessAmount)
+        [InlineData("bing.com", "shortu/fJyt3g", "2025-10-06", null, null, 0)]
+        public void UrlLookupGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
-            Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup("shortu/fJyt3g"));
+            Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl));
         }
 
         [Theory]
-        [ClassData(typeof(BadDataGenerator))]
-        public void UrlLookupBad(string longUrl, string shortUrl, DateTime firstAccess, DateTime? lastAccess, DateTime? expirationDate, int accessAmount)
+        [InlineData("chrome.com", "shortu/1122g", "2025-10-06", null, null, 0)]
+        public void UrlLookupBad(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
             Assert.NotEqual(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup("shortu/fJyt3g"));
         }
-        [Fact]
-        public void NewUrlGood()
+        [Theory]
+        [InlineData("chrome.com", "shortu/1122g", "2025-10-13", null, null, 0)]
+        public void NewUrlGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
-            //Assert.Contains(new Url("chrome.com", "shortu/1122g", new DateTime(2025, 10, 06, 15, 36, 23, 834, DateTimeKind.Local), null, null, 0), URLShortener.UrlLibrary);
+            URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+            //Assert.Contains(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLibrary); <--- Check on why this didn't work?
+            Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl));
         }
         [Fact]
         public void NewUrlBad()
