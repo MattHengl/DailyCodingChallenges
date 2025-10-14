@@ -90,10 +90,6 @@ namespace URLShortenerTest
             Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl));
         }
         [Fact]
-        public void NewUrlBad()
-        {
-        }
-        [Fact]
         public void UpdateUrlGood()
         {
             

@@ -115,41 +115,58 @@ public class URLShortener
     public static void NewUrl()
     {
         string expirationDate = null;
-        Console.WriteLine("Please enter the full Url.");
-        string longUrl = Console.ReadLine();
-        string shortUrl = LongUrltoShortUrl();
-        Console.WriteLine("Is there an expiration date that you want to add on this url?(Y,N)");
-        if (Console.ReadLine().ToLower().Contains("y"))
+        bool flag = true;
+        do
         {
-            Console.WriteLine("Please enter in the expiration date that you would like.(yyyy/MM/dd)");
-            expirationDate = Console.ReadLine();
-            Console.WriteLine($"Expiration date: {expirationDate}");
-        }
-        AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+            Console.WriteLine("Please enter the full Url.");
+            string longUrl = Console.ReadLine();
+            if (!string.IsNullOrEmpty(longUrl))
+            {
+                string shortUrl = LongUrltoShortUrl();
+                Console.WriteLine("Is there an expiration date that you want to add on this url?(Y,N)");
+                if (Console.ReadLine().ToLower().Contains("y"))
+                {
+                    Console.WriteLine("Please enter in the expiration date that you would like.(yyyy/MM/dd)");
+                    expirationDate = Console.ReadLine();
+                    Console.WriteLine($"Expiration date: {expirationDate}");
+                }
+                AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+                flag = false;
+            }
+            else
+            {
+                Console.WriteLine("That is not a valid long url.");
+            }
+        } while (flag);
     }
     public static void UpdateUrl(Url? url)
     {
+        bool flag = true;
         if (url != null)
         {
-            Console.WriteLine("What do you want to update?(ShortUrl, LongUrl, ExpirationDate)");
-            switch (Console.ReadLine().ToLower().Trim())
+            do
             {
-                case "shorturl":
-                    Console.WriteLine("What do you want the new ShortUrl to be?");
-                    url.ShortUrl = Console.ReadLine();
-                    break;
-                case "longurl":
-                    Console.WriteLine("What do you want the new LongUrl to be?");
-                    url.LongUrl = Console.ReadLine();
-                    break;
-                case "expirationdate":
-                    Console.WriteLine("What do you want the new ExpirationDate to be?");
-                    string desiredExpirationDate = Console.ReadLine();
-                    url.ExpirationDate = desiredExpirationDate;
-                    break;
-                default:
-                    break;
-            }
+                Console.WriteLine("What do you want to update?(ShortUrl, LongUrl, ExpirationDate)");
+                switch (Console.ReadLine().ToLower().Trim())
+                {
+                    case "shorturl":
+                        Console.WriteLine("What do you want the new ShortUrl to be?");
+                        url.ShortUrl = Console.ReadLine();
+                        flag = true; break;
+                    case "longurl":
+                        Console.WriteLine("What do you want the new LongUrl to be?");
+                        url.LongUrl = Console.ReadLine();
+                        flag = true; break;
+                    case "expirationdate":
+                        Console.WriteLine("What do you want the new ExpirationDate to be?");
+                        string desiredExpirationDate = Console.ReadLine();
+                        url.ExpirationDate = desiredExpirationDate;
+                        flag = true; break;
+                    default:
+                        Console.WriteLine("Not a valid option, please select a valid option.");
+                        break;
+                }
+            } while (flag);
         }
     }
     public static void RemoveUrl(Url removalUrl)

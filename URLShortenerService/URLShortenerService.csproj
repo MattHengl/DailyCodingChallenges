@@ -35,9 +35,6 @@
     <Reference Include="ClassLibrary">
       <HintPath>..\..\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="UtilityLibrary">
-      <HintPath>..\..\UtilityLibrary\UtilityLibrary\obj\Debug\net8.0\UtilityLibrary.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
