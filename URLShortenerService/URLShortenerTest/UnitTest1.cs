@@ -5,21 +5,11 @@ using static ClassLibrary.ClassLibrary;
 
 namespace URLShortenerTest
 {
-    public class GoodDataGenerator : IEnumerable<object[]>
+    public class DataGenerator : IEnumerable<object[]>
     {
         private readonly List<object[]> _data = new List<object[]>
         {
-            new object[] { "bing.com", "shortu/fJyt3g", "2025-10-06", null, null, 0 }
-        };
-        public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-    }
-    public class BadDataGenerator : IEnumerable<object[]>
-    {
-        private readonly List<object[]> _data = new List<object[]>
-        {
-            new object[] { "chrome.com", "shortu/1122g", "2025-10-06", null, null, 0 }
+            new object[] { "chrome.com", "shortu/1122g", "2025-10-14", null, null, 0 }
         };
         public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
 
@@ -76,89 +66,47 @@ namespace URLShortenerTest
         }
 
         [Theory]
-        [InlineData("chrome.com", "shortu/1122g", "2025-10-06", null, null, 0)]
+        [ClassData(typeof(DataGenerator))]
         public void UrlLookupBad(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
             Assert.NotEqual(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup("shortu/fJyt3g"));
         }
         [Theory]
-        [InlineData("chrome.com", "shortu/1122g", "2025-10-13", null, null, 0)]
-        public void NewUrlGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        //[InlineData("chrome.com", "shortu/1122g", "2025-10-14", null, null, 0)]
+        [ClassData(typeof(DataGenerator))]
+        public void AddUrlToLibraryGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
             URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
-            //Assert.Contains(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLibrary); <--- Check on why this didn't work?
+            //Assert.Contains(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLibrary); //<--- Check on why this didn't work?
             Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl));
         }
-        [Fact]
-        public void UpdateUrlGood()
+
+        //Testing to see if the url that is wanting to be added to the Library already exists in the library or not
+        [Theory]
+        [InlineData("google.com", "shortu/z7D97d", "2025-09-30", "2025-09-30", null, 2)]
+        public void AddUrlToLibraryBad(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
-            
+            URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+            Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl));
         }
 
-        [Fact]
-        public void UpdateUrlBad()
+        //Takes a URL in to remove the Url from the UrlLibrary
+        [Theory]
+        [ClassData(typeof(DataGenerator))]
+        public void RemoveUrlGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
-
+            URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+            URLShortener.RemoveUrl(URLShortener.UrlLookup(shortUrl));
+            Assert.DoesNotContain(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLibrary);
         }
 
-        [Fact]
-        public void RemoveUrlGood()
+        [Theory]
+        [InlineData("chrome.com", "shortu/1122g", "2025-10-14", null, "2025-10-14", 0)]
+        public void CheckExpirationDateGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
-
-        }
-
-        [Fact]
-        public void RemoveUrlBad()
-        {
-
-        }
-
-        [Fact]
-        public void LongUrltoShortUrlGood()
-        {
-
-        }
-
-        [Fact]
-        public void LongUrltoShortUrlBad()
-        {
-
-        }
-
-        [Fact]
-        public void AddUrlToLibraryGood()
-        {
-
-        }
-
-        [Fact]
-        public void AddUrlToLibraryBad()
-        {
-
-        }
-
-        [Fact]
-        public void CheckExpirationDateGood()
-        {
-
-        }
-
-        [Fact]
-        public void CheckExpirationDateBad()
-        {
-
-        }
-
-        [Fact]
-        public void OpenShortUrlGood()
-        {
-
-        }
-
-        [Fact]
-        public void OpenShortUrlBad()
-        {
-
+            URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+            URLShortener.CheckExpirationDate();
+            Assert.DoesNotContain(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLibrary);
         }
         public async Task DisposeAsync()
         {

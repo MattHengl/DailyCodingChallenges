@@ -115,29 +115,24 @@ public class URLShortener
     public static void NewUrl()
     {
         string expirationDate = null;
-        bool flag = true;
-        do
+        Console.WriteLine("Please enter the full Url.");
+        string longUrl = Console.ReadLine();
+        if (!string.IsNullOrEmpty(longUrl))
         {
-            Console.WriteLine("Please enter the full Url.");
-            string longUrl = Console.ReadLine();
-            if (!string.IsNullOrEmpty(longUrl))
+            string shortUrl = LongUrltoShortUrl();
+            Console.WriteLine("Is there an expiration date that you want to add on this url?(Y,N)");
+            if (Console.ReadLine().ToLower().Contains("y"))
             {
-                string shortUrl = LongUrltoShortUrl();
-                Console.WriteLine("Is there an expiration date that you want to add on this url?(Y,N)");
-                if (Console.ReadLine().ToLower().Contains("y"))
-                {
-                    Console.WriteLine("Please enter in the expiration date that you would like.(yyyy/MM/dd)");
-                    expirationDate = Console.ReadLine();
-                    Console.WriteLine($"Expiration date: {expirationDate}");
-                }
-                AddUrlToLibrary(longUrl, shortUrl, expirationDate);
-                flag = false;
+                Console.WriteLine("Please enter in the expiration date that you would like.(yyyy/MM/dd)");
+                expirationDate = Console.ReadLine();
+                Console.WriteLine($"Expiration date: {expirationDate}");
             }
-            else
-            {
-                Console.WriteLine("That is not a valid long url.");
-            }
-        } while (flag);
+            AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+        }
+        else
+        {
+            Console.WriteLine("That is not a valid long url.");
+        }
     }
     public static void UpdateUrl(Url? url)
     {
@@ -201,15 +196,19 @@ public class URLShortener
             Console.WriteLine("Url exists in the library already!");
         }
     }
+
+    //Changed this method to support a tempList since I was running into errors when removing something from the list during runtime
     public static void CheckExpirationDate()
     {
+        List<Url> tempList = new List<Url>();
         foreach (var item in UrlLibrary)
         {
             if (item.ExpirationDate == $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}")
             {
-                RemoveUrl(item);
+                tempList.Add(item);
             }
         }
+        UrlLibrary.RemoveAll(real => tempList.Any(temp => temp.ShortUrl == real.ShortUrl));
     }
     public static void OpenShortUrl(Url url)
     {
