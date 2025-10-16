@@ -9,7 +9,7 @@ namespace URLShortenerTest
     {
         private readonly List<object[]> _data = new List<object[]>
         {
-            new object[] { "chrome.com", "shortu/1122g", "2025-10-14", null, null, 0 }
+            new object[] { "chrome.com", "shortu/1122g", $"2025-10-{DateTime.Now.Day}", null, null, 0 }
         };
         public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
 
@@ -76,9 +76,12 @@ namespace URLShortenerTest
         [ClassData(typeof(DataGenerator))]
         public void AddUrlToLibraryGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
-            URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+            Assert.Multiple(
+                () => Assert.True(URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate)),
+                () => Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl))
+            );
             //Assert.Contains(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLibrary); //<--- Check on why this didn't work?
-            Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl));
+            //Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl));
         }
 
         //Testing to see if the url that is wanting to be added to the Library already exists in the library or not
@@ -86,8 +89,10 @@ namespace URLShortenerTest
         [InlineData("google.com", "shortu/z7D97d", "2025-09-30", "2025-09-30", null, 2)]
         public void AddUrlToLibraryBad(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
-            URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
-            Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl));
+            Assert.Multiple(
+                () => Assert.False(URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate)),
+                () => Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl))
+            );
         }
 
         //Takes a URL in to remove the Url from the UrlLibrary

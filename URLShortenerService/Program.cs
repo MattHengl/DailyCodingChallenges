@@ -59,7 +59,10 @@ public class URLShortener
                     RemoveUrl(AskingUrl());
                     break;
                 case "open":
-                    OpenShortUrl(AskingUrl());
+                    if (!OpenShortUrl(AskingUrl()))
+                    {
+                        Console.WriteLine("Was not able to open the URL in a browser window.");
+                    }
                     break;
                 case "exit":
                     SaveToJson<Url>(UrlLibrary, "../../../UrlLibrary.json");
@@ -127,11 +130,14 @@ public class URLShortener
                 expirationDate = Console.ReadLine();
                 Console.WriteLine($"Expiration date: {expirationDate}");
             }
-            AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+            if(!AddUrlToLibrary(longUrl, shortUrl, expirationDate))
+            {
+                Console.WriteLine("Url already exists in the library.");
+            }
         }
         else
         {
-            Console.WriteLine("That is not a valid long url.");
+            Console.WriteLine("Url is null or empty.");
         }
     }
     public static void UpdateUrl(Url? url)
@@ -183,17 +189,18 @@ public class URLShortener
         } while (UrlLibrary.Any(u => u.ShortUrl == shortUrl));
         return shortUrl;
     }
-    public static void AddUrlToLibrary(string longUrl, string shortUrl, string expirationDate)
+    public static bool AddUrlToLibrary(string longUrl, string shortUrl, string expirationDate)
     {
         //Check the library first to see if there is already a long/short form url already?
         if (!UrlExists(longUrl, "LongUrl") && !UrlExists(shortUrl, "ShortUrl"))
         {
             Url newUrl = new Url(longUrl, shortUrl, $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}", null, expirationDate, 0);
             UrlLibrary.Add(newUrl);
+            return true;
         }
         else
         {
-            Console.WriteLine("Url exists in the library already!");
+            return false;
         }
     }
 
@@ -210,18 +217,28 @@ public class URLShortener
         }
         UrlLibrary.RemoveAll(real => tempList.Any(temp => temp.ShortUrl == real.ShortUrl));
     }
-    public static void OpenShortUrl(Url url)
+    public static bool OpenShortUrl(Url url)
     {
-        if (url.ShortUrl != null)
+        try
         {
-            string chromePath = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
-            if (System.IO.File.Exists(chromePath))
+            if (url.ShortUrl != null)
             {
-                System.Diagnostics.Process.Start(chromePath, url.LongUrl);
-            }
+                string chromePath = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+                if (System.IO.File.Exists(chromePath))
+                {
+                    System.Diagnostics.Process.Start(chromePath, url.LongUrl);
+                }
 
-            url.AccessAmount++;
-            url.LastAccess = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
+                url.AccessAmount++;
+                url.LastAccess = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
+                return true;
+            }
+            return false;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
         }
     }
 }
