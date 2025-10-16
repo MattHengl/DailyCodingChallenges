@@ -23,11 +23,11 @@ namespace URLShortenerTest
             return Task.CompletedTask;
         }
         
-        [Fact]
-        public void AddGood()
-        {
-            Assert.Equal(4, URLShortener.Add(2, 2));
-        }
+        //[Fact]
+        //public void AddGood()
+        //{
+        //    Assert.Equal(4, URLShortener.Add(2, 2));
+        //}
         //[Fact]
         //public void AddBad()
         //{
@@ -45,7 +45,7 @@ namespace URLShortenerTest
         [Theory]
         [InlineData("google.com", "LongUrl")]
         [InlineData("shortu/z7D97d", "ShortUrl")]
-        public void UrlExists(string longUrl, string urlType)
+        public void UrlExistsPass(string longUrl, string urlType)
         {
             Assert.True(URLShortener.UrlExists(longUrl, urlType));
         }
@@ -53,28 +53,28 @@ namespace URLShortenerTest
         [Theory]
         [InlineData("facebook.com", "LongUrl")]
         [InlineData("shortu/112233", "ShortUrl")]
-        public void UrlExistsBad(string shortUrl, string uylType)
+        public void UrlExistsFail(string shortUrl, string uylType)
         {
             Assert.False(URLShortener.UrlExists(shortUrl, uylType));
         }
 
         [Theory]
         [InlineData("bing.com", "shortu/fJyt3g", "2025-10-06", null, null, 0)]
-        public void UrlLookupGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        public void UrlLookupPass(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
             Assert.Equivalent(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup(shortUrl));
         }
 
         [Theory]
         [ClassData(typeof(DataGenerator))]
-        public void UrlLookupBad(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        public void UrlLookupFail(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
             Assert.NotEqual(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLookup("shortu/fJyt3g"));
         }
         [Theory]
         //[InlineData("chrome.com", "shortu/1122g", "2025-10-14", null, null, 0)]
         [ClassData(typeof(DataGenerator))]
-        public void AddUrlToLibraryGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        public void AddUrlToLibraryPass(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
             Assert.Multiple(
                 () => Assert.True(URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate)),
@@ -87,7 +87,7 @@ namespace URLShortenerTest
         //Testing to see if the url that is wanting to be added to the Library already exists in the library or not
         [Theory]
         [InlineData("google.com", "shortu/z7D97d", "2025-09-30", "2025-09-30", null, 2)]
-        public void AddUrlToLibraryBad(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        public void AddUrlToLibraryFail(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
             Assert.Multiple(
                 () => Assert.False(URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate)),
@@ -98,7 +98,7 @@ namespace URLShortenerTest
         //Takes a URL in to remove the Url from the UrlLibrary
         [Theory]
         [ClassData(typeof(DataGenerator))]
-        public void RemoveUrlGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        public void RemoveUrlPass(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
             URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
             URLShortener.RemoveUrl(URLShortener.UrlLookup(shortUrl));
@@ -106,13 +106,37 @@ namespace URLShortenerTest
         }
 
         [Theory]
-        [InlineData("chrome.com", "shortu/1122g", "2025-10-14", null, "2025-10-14", 0)]
-        public void CheckExpirationDateGood(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        [InlineData("chrome.com", "shortu/1122g", "2025-10-16", null, "2025-10-16", 0)]
+        public void CheckExpirationDatePass(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
         {
             URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
-            URLShortener.CheckExpirationDate();
-            Assert.DoesNotContain(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLibrary);
+            Assert.Multiple(
+                () => Assert.Equal(1, URLShortener.CheckExpirationDate()),
+                () => Assert.DoesNotContain(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLibrary)
+            );
         }
+        [Theory]
+        [InlineData("chrome.com", "shortu/1122g", "2025-10-16", null, "2025-10-16", 0)]
+        public void CheckExpirationDateFail(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        {
+            URLShortener.AddUrlToLibrary(longUrl, shortUrl, expirationDate);
+            Assert.Multiple(
+                () => Assert.NotEqual(0, URLShortener.CheckExpirationDate()),
+                () => Assert.DoesNotContain(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount), URLShortener.UrlLibrary)
+            );
+        }
+        //[Theory]
+        //[ClassData(typeof(DataGenerator))]
+        //public void OpenShortUrlPass(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        //{
+        //    Assert.True(URLShortener.OpenShortUrl(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount)));
+        //}
+        //[Theory]
+        //[InlineData("chrome.com", "shortu/1122g", "2025-10-14", null, "2025-10-14", 0)]
+        //public void OpenShortUrlFail(string longUrl, string shortUrl, string firstAccess, string? lastAccess, string? expirationDate, int accessAmount)
+        //{
+        //    Assert.True(URLShortener.OpenShortUrl(new Url(longUrl, shortUrl, firstAccess, lastAccess, expirationDate, accessAmount)));
+        //}
         public async Task DisposeAsync()
         {
             

@@ -29,7 +29,8 @@ public class URLShortener
             * Handle Edge cases(duplicate URLS, invalid characters, etc)
             */
         UrlLibrary = LoadJson<Url>("../../../UrlLibrary.json");
-        CheckExpirationDate();
+        int removedAmount = CheckExpirationDate();
+        Console.WriteLine(removedAmount <= 0 ? "No Urls had expired." : $"Urls removed: {removedAmount}");
         Menu();
     }
     public static int Add(int x, int y) => x + y;
@@ -126,8 +127,8 @@ public class URLShortener
             Console.WriteLine("Is there an expiration date that you want to add on this url?(Y,N)");
             if (Console.ReadLine().ToLower().Contains("y"))
             {
-                Console.WriteLine("Please enter in the expiration date that you would like.(yyyy/MM/dd)");
-                expirationDate = Console.ReadLine();
+                Console.WriteLine("Please enter in the expiration date that you would like.(yyyy-MM-dd)");
+                expirationDate = Console.ReadLine().Replace('/', '-');
                 Console.WriteLine($"Expiration date: {expirationDate}");
             }
             if(!AddUrlToLibrary(longUrl, shortUrl, expirationDate))
@@ -205,17 +206,20 @@ public class URLShortener
     }
 
     //Changed this method to support a tempList since I was running into errors when removing something from the list during runtime
-    public static void CheckExpirationDate()
+    public static int CheckExpirationDate()
     {
+        int removedCount = 0;
         List<Url> tempList = new List<Url>();
         foreach (var item in UrlLibrary)
         {
             if (item.ExpirationDate == $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}")
             {
                 tempList.Add(item);
+                removedCount++;
             }
         }
         UrlLibrary.RemoveAll(real => tempList.Any(temp => temp.ShortUrl == real.ShortUrl));
+        return removedCount;
     }
     public static bool OpenShortUrl(Url url)
     {
