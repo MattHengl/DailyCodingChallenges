@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LogParser")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87d802bb579918dfe7d7e341e8e77cf0d32aa655")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6b0c94b1f6a9fe45fa64a937c2bc803f43a9ad2")]
 [assembly: System.Reflection.AssemblyProductAttribute("LogParser")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogParser")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
