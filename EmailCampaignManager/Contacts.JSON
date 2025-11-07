@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "firstname": "Matt",
+        "lastname": "Hengl",
+        "email": "mhengl@gmail.com",
+        "company": "Oz Corp."
+    },
+    {
+        "firstname": "Lori",
+        "lastname": "Hengl",
+        "email": "lhengl@gmail.com",
+        "company": "Hogwarts"
+    }
+]
