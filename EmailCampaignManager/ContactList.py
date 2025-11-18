@@ -1,47 +1,73 @@
-import ContactCard
+from ContactCard import Contact
+import JSONHandler
 
 class ContactList:
-    contact_list: list[ContactCard.Contact] = []
+    def __init__(self):
+        self.contact_list: list[Contact] = []
 
-def add_card_to_contacts(contact_list, contact_card):
-    try:
-        if contact_list is not None and contact_card is not None:
-            contact_list.append(contact_card)
+    def is_empty(self):
+        if len(self.contact_list) == 0:
+            return True
         else:
-            raise Exception("Contact card is invalid.")
-        return True
-    except Exception as e:
-        print(f"Error: {e}")
-        return False
+            return False
 
-def remove_contact_card(contact_list, contact_card=None):
-    try:
-        if contact_card is None:
-            contact = find_contact(contact_list, input("Enter the email address of the contact to find: "))
-            if not contact:
-                return False
-            contact_list.remove(contact)
+    def get_list(self):
+        return self.contact_list
+
+    def add_card_to_contacts(self, contact_card = None):
+        try:
+            if contact_card is None:
+                print("Lets create a new contact to add to the list!")
+                self.contact_list.append(Contact())
+            else:
+                print("Adding contact to list.")
+                self.contact_list.append(contact_card)
             return True
-        if contact_card in contact_list:
-            contact_list.remove(contact_card)
-            return True
-        return False
-    except Exception as e:
-        print(f"Error removing contact: {e}")
-        return False
+        except Exception as e:
+            print(f"Error: {e}")
+            return False
+        finally:
+            JSONHandler.save_json("Contacts.JSON", self.contact_list)
 
-def find_contact(contact_list, email_to_find):
-    try:
-        for contact in contact_list:
-            email = contact.get('email') if isinstance(contact, dict) else getattr(contact, 'email', None)
-            if email == email_to_find:
-                print(contact)
-                return contact
-        raise Exception("Contact not found.")
-    except Exception as e:
-        print(f"Error: {e}")
-        return False
+    def remove_contact_card(self, contact_card=None):
+        try:
+            if len(self.contact_list) > 0:
+                if contact_card is None:
+                    contact = self.find_contact(input("Enter the email address of the contact to find: "))
+                    if not contact:
+                        raise Exception("Contact not found.")
+                    print(f"Removing {contact}")
+                    self.contact_list.remove(contact)
+                    return True
+                if contact_card in self.contact_list:
+                    print(f"Removing {contact_card}")
+                    self.contact_list.remove(contact_card)
+                    return True
+            else:
+                raise Exception("Contact List is empty.")
+        except Exception as e:
+            print(f"Error removing contact: {e}")
+            return False
+        finally:
+            JSONHandler.save_json("Contacts.JSON", self.contact_list)
 
-def view_all_contacts(contact_list):
-    for contact in contact_list:
-        print(f"{contact}")
+    def find_contact(self, email_to_find):
+        print(f"Trying to find {email_to_find}")
+        try:
+            for contact in self.contact_list:
+                email = contact.get('email') if isinstance(contact, dict) else getattr(contact, 'email', None)
+                if email == email_to_find:
+                    print(contact)
+                    return contact
+            raise Exception("Contact not found.")
+        except Exception as e:
+            print(f"Error: {e}")
+            return False
+
+    def view_all_contacts(self):
+        if len(self.contact_list) > 0:
+            for contact in self.contact_list:
+                print(f"{contact}")
+
+    def load_contact_list_from_memory(self):
+        self.contact_list = list((JSONHandler.load_json("Contacts.JSON")))
