@@ -1,5 +1,3 @@
-import io
-
 import pytest
 import EmailCampaignManager
 from EmailList import EmailList
@@ -10,11 +8,9 @@ class Tests:
     @pytest.fixture
     def setup_teardown_fixture(self):
         # Setup code (if needed)
-        EmailCampaignManager.email_list = []
         self.test_email_list = EmailList()
         yield
         # Teardown code (if needed)
-        EmailCampaignManager.email_list = []
 
     test_email_campaign = [
         (Email( "mhengl@gmail.com", "Welcome!", "Hello Matt, welcome to our service!", "google.com", datetime.datetime.now().strftime("%m/%d/%Y"), "Company-Oz Corp."), True)
