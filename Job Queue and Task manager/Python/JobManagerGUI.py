@@ -1,10 +1,9 @@
+import asyncio
 import sys
-import tkinter
+import threading
 from tkinter import *
-from Python.JobList import JobList
 from Python.Job import Job
-
-job_list = JobList()
+from Python.app_state import job_list
 
 root = Tk()
 root.title("JobQueueTaskManager")
@@ -14,6 +13,9 @@ menu_frame = Frame(root)
 menu_frame.pack()
 intro = Label(menu_frame, text = "What would you like to do?", justify="center" )
 intro.grid(column=5, row=0)
+
+run_frame = Frame(root)
+run_frame.pack()
 
 create_frame = Frame(root)
 create_frame.pack()
@@ -34,6 +36,7 @@ view_all_frame = Frame(root)
 view_all_frame.pack()
 
 def go_to_main_menu():
+    run_frame.forget()
     create_frame.forget()
     delete_frame.forget()
     edit_frame.forget()
@@ -49,6 +52,30 @@ menu = Menu(menu_bar, tearoff=0)
 menu_bar.add_command(label="Menu", command = go_to_main_menu)
 
 name_not_found_warning = Label(edit_frame, text="", fg="red")
+
+
+def run_job_button_click():
+    if check_job_list_size():
+        menu_frame.pack_forget()
+        run_frame.pack()
+
+        run_frame_label = Label(run_frame, text="Job Name to run: ")
+        run_frame_label.grid(column=0, row=0, sticky="W", pady=2)
+        run_frame_entry = Entry(run_frame, width=20, justify="center")
+        run_frame_entry.grid(column=1, row=0, pady=2)
+
+        def on_run_click():
+            job_name = run_frame_entry.get().lower().strip()
+            job_to_run = job_list.find_job(job_name)
+            if job_to_run is False:
+                display_edit_warning(f"{job_name} not found", 2, 0)
+                return
+            intro.config(text=f'Running "{job_to_run.job_name}"...', justify="center")
+            go_to_main_menu()
+            threading.Thread(target=lambda: asyncio.run(job_to_run.run_job()), daemon=True).start()
+
+        run_button = Button(run_frame, text="Run", command=on_run_click)
+        run_button.grid(column=1, row=3, sticky="W", pady=10)
 
 def create_job_button_click():
     menu_frame.pack_forget()
@@ -167,6 +194,7 @@ def save_edit_logic(job, new_name, new_type, new_date):
 
 
 
+
 def view_job_button_click():
     if check_job_list_size():
         menu_frame.pack_forget()
@@ -203,7 +231,7 @@ def view_all_job_button_click():
         #Add a scroll to be able to scroll to the bottom of the list
         for jobs in job_list.get_job_list():
             job_info_text.pack(anchor="w", pady=5)
-            job_info_text.insert(tkinter.END, jobs.__str__() + "\n")
+            job_info_text.insert(END, jobs.__str__() + "\n")
         v.config(command=job_info_text.yview)
 
         menu_button = Button(view_frame, text="Menu", command=go_to_main_menu)
@@ -227,24 +255,30 @@ def quit_button_click():
 
 
 
+run_job_btn = Button(menu_frame, text = "Run Jobs", width=10, command=run_job_button_click)
+run_job_btn.grid(column = 5, row = 1)
 
 create_job_btn = Button(menu_frame, text = "Create Job", width=10,command = create_job_button_click)
-create_job_btn.grid(column = 5, row = 1)
+create_job_btn.grid(column = 5, row = 2)
 
 delete_job_btn = Button(menu_frame, text = "Delete Job", width=10, command = delete_job_button_click)
-delete_job_btn.grid(column = 5, row = 2)
+delete_job_btn.grid(column = 5, row = 3)
 
 edit_job_btn = Button(menu_frame, text = "Edit Job", width=10, command = edit_job_button_click)
-edit_job_btn.grid(column = 5, row = 3)
+edit_job_btn.grid(column = 5, row = 4)
 
 view_job_btn = Button(menu_frame, text = "View Job", width=10, command = view_job_button_click)
-view_job_btn.grid(column = 5, row = 4)
+view_job_btn.grid(column = 5, row = 5)
 
 view_all_job_btn = Button(menu_frame, text = "View All Jobs", width=10, command = view_all_job_button_click)
-view_all_job_btn.grid(column = 5, row = 5)
+view_all_job_btn.grid(column = 5, row = 6)
 
 quit_btn = Button(menu_frame, text = "Quit", width=10, command = quit_button_click)
-quit_btn.grid(column = 5, row = 6)
+quit_btn.grid(column = 5, row = 7)
 
 root.config(menu = menu_bar)
-root.mainloop()
+
+# Only start the main loop when this file is executed directly. This prevents importing
+# the module (for example from JobQueueTaskManager.py) from starting the GUI immediately.
+if __name__ == '__main__':
+    root.mainloop()

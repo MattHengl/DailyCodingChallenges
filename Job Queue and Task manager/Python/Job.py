@@ -1,4 +1,5 @@
 import asyncio
+import datetime
 import random
 from email.message import EmailMessage
 import shutil
@@ -112,4 +113,22 @@ async def run_random_fail():
             raise Exception("Random number was less than 50")
     except Exception as e:
         print(f"Error: {e}")
+        return False
+
+async def _run_all_jobs_coroutine(self):
+    import asyncio
+    coros = []
+    for job in self.job_list:
+        if job.scheduled_run_time == datetime.datetime.now().strftime("%Y-%m-%d"):
+            coros.append(job.run_job())
+    if coros:
+        await asyncio.gather(*coros)
+
+def run_scheduled_jobs(self):
+    import asyncio
+    try:
+        asyncio.run(self._run_all_jobs_coroutine())
+        return True
+    except Exception as e:
+        print(e)
         return False
