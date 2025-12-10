@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="66b556e5-ba0f-43d2-93f8-1beef7359f64" name="Changes" comment="Finished up what I wanted to get down with this project. Not fully working and there are some bugs, but was able to explore the ability of adding a GUI to a project rather than just having it run in the command prompt." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MattHengl&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MattHengl/DailyCodingChallenges&quot;,
+    &quot;accountId&quot;: &quot;b0d4e3f1-b5af-4d71-9cd1-b404685b48bb&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="35J4due4k1N8elZVZmyncGRtyCZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests in test_Job.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_JobList.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_GUILogic.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_Job.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_JobList.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Job.executor&quot;: &quot;Run&quot;,
+    &quot;Python.JobList.executor&quot;: &quot;Run&quot;,
+    &quot;Python.JobManagerGUI.executor&quot;: &quot;Run&quot;,
+    &quot;Python.JobQueueTaskManager.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app_state.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_Job.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="JobManagerGUI" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.9" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Python" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python/JobManagerGUI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="66b556e5-ba0f-43d2-93f8-1beef7359f64" name="Changes" comment="" />
+      <created>1762814930343</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762814930343</updated>
+      <workItem from="1762814931367" duration="19521000" />
+      <workItem from="1762911967762" duration="1638000" />
+      <workItem from="1762983250453" duration="10392000" />
+      <workItem from="1763494722809" duration="2881000" />
+      <workItem from="1763497807671" duration="519000" />
+      <workItem from="1763498351014" duration="60000" />
+      <workItem from="1763498430315" duration="27000" />
+      <workItem from="1763498473915" duration="222000" />
+      <workItem from="1763498715655" duration="4086000" />
+      <workItem from="1763520370525" duration="684000" />
+      <workItem from="1763582221681" duration="31831000" />
+      <workItem from="1764017753336" duration="5000" />
+    </task>
+    <task id="LOCAL-00001" summary="Finished working on the Python side of the Job Manager. Was able to make a GUI for this project rather than running it through the command console">
+      <option name="closed" value="true" />
+      <created>1764704149753</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1764704149753</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Finished working on the Python side of the Job Manager. Was able to make a GUI for this project rather than running it through the command console&#10;Edited some of the tags in for the GUI and the scroll bar on the side when viewing all jobs">
+      <option name="closed" value="true" />
+      <created>1764704215666</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1764704215666</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Finished up what I wanted to get down with this project. Not fully working and there are some bugs, but was able to explore the ability of adding a GUI to a project rather than just having it run in the command prompt.">
+      <option name="closed" value="true" />
+      <created>1765399358688</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1765399358688</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changed the way that both EmailList as well as ContactList works. Made the lists that they make internal rather than passing it back and forth between the main program and the init files. Changed the tests to match the new functionality of these files." />
+    <MESSAGE value="Finished working on the Python side of the Job Manager. Was able to make a GUI for this project rather than running it through the command console" />
+    <MESSAGE value="Finished working on the Python side of the Job Manager. Was able to make a GUI for this project rather than running it through the command console&#10;Edited some of the tags in for the GUI and the scroll bar on the side when viewing all jobs" />
+    <MESSAGE value="Finished up what I wanted to get down with this project. Not fully working and there are some bugs, but was able to explore the ability of adding a GUI to a project rather than just having it run in the command prompt." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished up what I wanted to get down with this project. Not fully working and there are some bugs, but was able to explore the ability of adding a GUI to a project rather than just having it run in the command prompt." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Job_Queue_and_Task_manager$JobList.coverage" NAME="JobList Coverage Results" MODIFIED="1762891695361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Python" />
+    <SUITE FILE_PATH="coverage/Job_Queue_and_Task_manager$JobQueueTaskManager.coverage" NAME="JobQueueTaskManager Coverage Results" MODIFIED="1763590678081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Python" />
+    <SUITE FILE_PATH="coverage/Job_Queue_and_Task_manager$pytest_in_test_JobList_py.coverage" NAME="pytest in test_JobList.py Coverage Results" MODIFIED="1763678627305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Job_Queue_and_Task_manager$.coverage" NAME=" Coverage Results" MODIFIED="1762911848683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Job_Queue_and_Task_manager$pytest_in_test_Job_py.coverage" NAME="pytest in test_Job.py Coverage Results" MODIFIED="1763678481600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Job_Queue_and_Task_manager$JobManagerGUI.coverage" NAME="JobManagerGUI Coverage Results" MODIFIED="1764015928080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Python" />
+    <SUITE FILE_PATH="coverage/Job_Queue_and_Task_manager$test_Job.coverage" NAME="test_Job Coverage Results" MODIFIED="1762911971671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Python/tests" />
+    <SUITE FILE_PATH="coverage/Job_Queue_and_Task_manager$Job.coverage" NAME="Job Coverage Results" MODIFIED="1763669184953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Python" />
+    <SUITE FILE_PATH="coverage/Job_Queue_and_Task_manager$pytest_in_test_GUILogic_py.coverage" NAME="pytest in test_GUILogic.py Coverage Results" MODIFIED="1763682419798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
