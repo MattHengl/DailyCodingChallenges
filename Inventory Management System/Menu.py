@@ -1,5 +1,5 @@
 import ManagementMain
-from Product import Product
+from DataValidation import DataValidation
 from Reporting import Reporting
 from Store import Store
 
@@ -22,7 +22,8 @@ def handle_menu_option():
             display_product_menu()
         elif menu_input == "3":
             sending_store, receiving_store, sku, quantity = get_info_for_send_products()
-            Store.send_items(sending_store, receiving_store, sku, quantity)
+            Store.send_items(sending_store, receiving_store, sku, quantity) \
+                if sending_store is not None and receiving_store is not None else print(f"Could not complete stock send.")
         elif menu_input == "4":
             view_reports()
         elif menu_input == "5":
@@ -50,8 +51,9 @@ def handle_store_menu():
         elif store_menu_input == "2":
             Store.set_store_name()
         elif store_menu_input == "3":
-            store_to_remove = input("Enter the name of the store to remove: ").strip()
-            store_instance = get_and_check_for_store(store_to_remove)
+            display_stores()
+            store_to_remove = input("Enter the store number of the store you would want to remove: ").strip()
+            store_instance = DataValidation.get_store(store_to_remove, ManagementMain.stores_list)
             if store_instance is not None:
                 ManagementMain.stores_list.remove(store_instance)
                 print(f"Store '{store_to_remove}' has been removed.")
@@ -67,7 +69,7 @@ def handle_store_menu():
 
 def display_product_menu():
     display_stores()
-    current_store = get_and_check_for_store(input("Enter the name of the store you are looking for: ").strip())
+    current_store = DataValidation.get_store(input("Enter the store number of the store you are looking for: ").strip(), ManagementMain.stores_list)
     print("\nWhat would you like to do within this location?")
     print("1. Add Product")
     print("2. Update Product")
@@ -77,13 +79,20 @@ def display_product_menu():
     handle_product_menu(current_store)
 
 def handle_product_menu(current_store):
+    from Product import Product
     while True:
         if current_store is not None:
             product_input = input("Select an option: ").strip()
             if product_input == "1":
                 current_store.store_inventory.append(Product())
             elif product_input == "2":
-                Product.update_product(input("Enter the name of the store you are looking for: ").strip())
+                Reporting.current_stock(current_store.store_inventory)
+                wanted_product = next((product for product in current_store.store_inventory
+                                             if product.sku == input("Enter the sku of the product that you want to update: ").strip()), None)
+                if wanted_product is not None:
+                    Product.update_product(wanted_product)
+                else:
+                    print(f"{wanted_product} is not in the store.")
             elif product_input == "3":
                 Reporting.current_stock(current_store)
                 Product.remove_product(current_store, input("Enter the SKU of the product to remove: ").strip())
@@ -99,21 +108,17 @@ def handle_product_menu(current_store):
             display_product_menu()
 
 def get_info_for_send_products():
-    sending_store = get_and_check_for_store(input("Enter the name of the sending store: ").strip())
-    receiving_store = get_and_check_for_store(input("Enter the name of the receiving store: ").strip())
-    sku = input("Enter the SKU of the product to send: ").strip()
-    quantity = int(input("Enter the quantity to send: ").strip())
-    return sending_store, receiving_store, sku, quantity
-
-
-def get_and_check_for_store(wanted_store):
-    if Store.look_for_store(wanted_store.lower(), ManagementMain.stores_list):
-        print(f"{wanted_store} found.")
-        current_store = next((store for store in ManagementMain.stores_list if store.store_name.lower() == wanted_store.lower()), None)
-        return current_store
+    sending_store = DataValidation.get_store(input("Enter the store number of the receiving store: ").strip(), ManagementMain.stores_list)
+    receiving_store = DataValidation.get_store(input("Enter the store number of the receiving store: ").strip(), ManagementMain.stores_list) \
+        if sending_store is not None else print(f"Could not find {sending_store}.")
+    if receiving_store is not None:
+        sku = input("Enter the SKU of the product to send: ").strip()
+        quantity = int(input("Enter the quantity to send: ").strip())
+        return sending_store, receiving_store, sku, quantity
     else:
-        print("Store not found.")
-        return None
+        print(f"Could not find {receiving_store}")
+        return None, None, None, None
+
 
 def view_reports():
     print("No.")
@@ -121,4 +126,4 @@ def view_reports():
 def display_stores():
     print("\nCurrent Locations:")
     for store in ManagementMain.stores_list:
-        print(f"- {store.store_name}")
+        print(f"- {store}")

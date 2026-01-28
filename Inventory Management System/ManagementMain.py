@@ -62,11 +62,15 @@ Import/export functionality (CSV)
 Simple supplier management
 Purchase order creation'''
 import Menu
-from Store import Store
 
-try:
-    stores_list = [Store("Main Warehouse"), Store("Downtown Store")]
-    if __name__ == "__main__":
+
+stores_list = []
+
+if __name__ == "__main__":
+    from Store import Store
+    stores_list.extend([Store("Main Warehouse"), Store("Downtown Store")])
+
+    try:
         Menu.display_main_menu()
-except Exception as e:
-    print(f"An error occurred: {e}")
+    except Exception as e:
+        print(f"An error occurred: {e}")

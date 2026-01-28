@@ -3,14 +3,13 @@ from Product import Product
 from Reporting import Reporting
 from Store import Store
 
-
 class TestProduct:
     @pytest.fixture()
     def setup_teardown(self):
         self.test_inventory = [
-            Product("Tomato", 1.50, None, 20),
-            Product("Lettuce", 1.00, None, 20),
-            Product("Watermelon", 3.00, None, 50)
+            Product("Tomato", 150, None, 20),
+            Product("Lettuce", 100, None, 20),
+            Product("Watermelon", 300, None, 50)
         ]
         self.test_sending_store = Store("Test Store")
         self.test_sending_store.store_inventory = self.test_inventory
@@ -27,12 +26,12 @@ class TestProduct:
 
     def test_set_cost_success(self, monkeypatch):
         monkeypatch.setattr('builtins.input', lambda _: "2.50")
-        assert Product.set_cost() == 2.50
+        assert Product.set_cost() == 250
 
     def test_set_cost_failure(self, monkeypatch):
         inputs = iter(["", "  ", "3.75"])
         monkeypatch.setattr('builtins.input', lambda _: next(inputs))
-        assert Product.set_cost() == 3.75
+        assert Product.set_cost() == 375
 
     def test_set_quantity_success(self, monkeypatch):
         monkeypatch.setattr('builtins.input', lambda _: "15")

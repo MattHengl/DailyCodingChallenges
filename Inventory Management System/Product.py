@@ -5,13 +5,20 @@ Process outbound orders (reduce stock)
 Transfer inventory between locations
 Adjust inventory for damage/loss/found items
 Full audit trail of all movements'''
+import ManagementMain
+from DataValidation import DataValidation
+
 
 class Product:
-    def __init__(self, name = None, cost = None, sku=None, quantity: int = 0):
+    def __init__(self, name = None, cost = None, sku = None, quantity: int = 0):
         self._name = name if name is not None else self.set_name()
         self._cost = cost if cost is not None else self.set_cost()
-        self.sku = sku if sku is not None else self.generate_sku()
-        self._quantity = quantity if quantity > 0 else self.set_quantity()
+        if sku is None:
+            new_sku = DataValidation.check_sku_duplicates(self.generate_sku(), ManagementMain.stores_list)
+            self._sku = new_sku
+        else:
+            self._sku = sku
+        self._quantity = quantity if quantity >= 0 else self.set_quantity()
 
     def __str__(self):
         return f"Product Name: {self._name}, Cost: {self.cost}, SKU: {self.sku}, Quantity: {self._quantity}"
@@ -44,6 +51,12 @@ class Product:
             print("Can not be blank.")
         return int(cost.replace('.', ''))
 
+    @property
+    def sku(self):
+        return self._sku
+    @sku.setter
+    def sku(self, value):
+        self._sku = value
     @staticmethod
     def generate_sku():
         import random
