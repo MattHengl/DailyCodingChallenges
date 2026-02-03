@@ -5,7 +5,6 @@ Process outbound orders (reduce stock)
 Transfer inventory between locations
 Adjust inventory for damage/loss/found items
 Full audit trail of all movements'''
-import ManagementMain
 from DataValidation import DataValidation
 
 
@@ -14,7 +13,8 @@ class Product:
         self._name = name if name is not None else self.set_name()
         self._cost = cost if cost is not None else self.set_cost()
         if sku is None:
-            new_sku = DataValidation.check_sku_duplicates(self.generate_sku(), ManagementMain.stores_list)
+            from StoreListManager import stores_list
+            new_sku = DataValidation.check_sku_duplicates(self.generate_sku(), stores_list)
             self._sku = new_sku
         else:
             self._sku = sku
