@@ -58,10 +58,3 @@ class DataValidation:
         except Exception as e:
             print(f"Error while searching for store number in store list: {e}")
             return False
-
-    @staticmethod
-    def get_store(wanted_store_number, stores_list):
-        print(f"Checking for {wanted_store_number}")
-        found_store = next((store for store in stores_list if store.store_number == wanted_store_number), None)
-        print("Found the store in store list.") if found_store is not False else print("Could not find store in store list.")
-        return found_store

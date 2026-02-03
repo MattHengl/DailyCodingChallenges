@@ -1,7 +1,6 @@
-import ManagementMain
-from DataValidation import DataValidation
 from Reporting import Reporting
 from Store import Store
+from StoreListManager import stores_list
 
 
 def display_main_menu():
@@ -45,20 +44,20 @@ def handle_store_menu():
     while True:
         store_menu_input = input("Please select an options from the menu: ").strip()
         if store_menu_input == "1":
-            ManagementMain.stores_list.append(Store())
+            stores_list.add_store(Store())
             display_main_menu()
             break
         elif store_menu_input == "2":
             Store.set_store_name()
         elif store_menu_input == "3":
-            display_stores()
+            stores_list.display_stores()
             store_to_remove = input("Enter the store number of the store you would want to remove: ").strip()
-            store_instance = DataValidation.get_store(store_to_remove, ManagementMain.stores_list)
+            store_instance = stores_list.get_store(store_to_remove, stores_list)
             if store_instance is not None:
-                ManagementMain.stores_list.remove(store_instance)
+                stores_list.remove(store_instance)
                 print(f"Store '{store_to_remove}' has been removed.")
         elif store_menu_input == "4":
-            display_stores()
+            stores_list.display_stores()
         elif store_menu_input == "5":
             display_main_menu()
             break
@@ -68,8 +67,8 @@ def handle_store_menu():
 
 
 def display_product_menu():
-    display_stores()
-    current_store = DataValidation.get_store(input("Enter the store number of the store you are looking for: ").strip(), ManagementMain.stores_list)
+    stores_list.display_stores()
+    current_store = stores_list.get_store(input("Enter the store number of the store you are looking for: ").strip())
     print("\nWhat would you like to do within this location?")
     print("1. Add Product")
     print("2. Update Product")
@@ -108,8 +107,8 @@ def handle_product_menu(current_store):
             display_product_menu()
 
 def get_info_for_send_products():
-    sending_store = DataValidation.get_store(input("Enter the store number of the receiving store: ").strip(), ManagementMain.stores_list)
-    receiving_store = DataValidation.get_store(input("Enter the store number of the receiving store: ").strip(), ManagementMain.stores_list) \
+    sending_store = stores_list.get_store(input("Enter the store number of the receiving store: ").strip())
+    receiving_store = stores_list.get_store(input("Enter the store number of the receiving store: ").strip()) \
         if sending_store is not None else print(f"Could not find {sending_store}.")
     if receiving_store is not None:
         sku = input("Enter the SKU of the product to send: ").strip()
@@ -122,8 +121,3 @@ def get_info_for_send_products():
 
 def view_reports():
     print("No.")
-
-def display_stores():
-    print("\nCurrent Locations:")
-    for store in ManagementMain.stores_list:
-        print(f"- {store}")

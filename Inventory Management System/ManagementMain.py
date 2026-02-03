@@ -63,13 +63,10 @@ Simple supplier management
 Purchase order creation'''
 import Menu
 
-
-stores_list = []
-
 if __name__ == "__main__":
     from Store import Store
-    stores_list.extend([Store("Main Warehouse"), Store("Downtown Store")])
-
+    from StoreListManager import stores_list
+    stores_list.extend_stores([Store("Main Warehouse"), Store("Downtown Store")])
     try:
         Menu.display_main_menu()
     except Exception as e:

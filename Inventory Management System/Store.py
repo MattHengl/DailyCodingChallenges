@@ -12,8 +12,8 @@ class Store:
         self._store_name = store_name if store_name is not None else self.set_store_name()
         self.store_inventory = []
         if store_number == 0:
-            import ManagementMain
-            new_store_number = DataValidation.check_store_number_duplicates(Store.generate_store_number(), ManagementMain.stores_list)
+            from StoreListManager import stores_list
+            new_store_number = DataValidation.check_store_number_duplicates(Store.generate_store_number(), stores_list)
             self._store_number = new_store_number
         else:
             self._store_number = store_number
